@@ -1,0 +1,54 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args){
+        String account[] = new String[]{"33258184", "a781831", "b845813", "gqydhe6165"};
+        Map<String, Integer> map = new HashMap<>();
+        map.put("33258184",96541);
+        map.put("a781831",48185);
+        map.put("b845813",635481);
+        map.put("gqydhe6165",95112);
+        Scanner scanner=new Scanner(System.in);
+
+        while(scanner.hasNext()){
+            for (int i = 0; i <6 ; i++) {
+                String ac=scanner.next();
+                if(map.containsKey(ac)){
+                    System.out.println("请输入验证码");
+                    String t=getRandomString();
+
+                    System.out.println("您的验证码为"+t);
+                    for (int j = 0; j < 6; j++) {
+                        String x=scanner.next();
+                       if(t.equals(x)){
+                           System.out.println("您的密码为"+map.get(ac));
+                       }else{
+                           System.out.println("请再试一次");
+                       }
+                    }
+                    System.out.println("超出次数，终止服务");
+                }else {
+                    System.out.println("请再次尝试");
+                }
+            }
+            System.out.println("超出次数，终止服务");
+            System.exit(0);
+
+        }
+    }
+
+    public static String getRandomString(){
+        String f="";
+        String x="ASDFGHJKLZXCVBNMQEWRTYUIOP0123456789asdfghjklzxcvbnmqwertyuiop";
+        Random random=new Random();
+        for (int i = 0; i <5 ; i++) {
+            f+=x.charAt(random.nextInt(49));
+        }
+       return f;
+    }
+}
+
